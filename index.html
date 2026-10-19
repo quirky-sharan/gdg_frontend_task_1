@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f4f5f9" />
+    <meta
+      name="description"
+      content="Real-time synchronisation of theme, language and font size across browser tabs."
+    />
+    <title>Settings Sync</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <style>
+      /*
+       * Critical colours for the very first frame, before the main stylesheet is applied.
+       * The boot script below sets data-theme; keep these in sync with --bg / --text in
+       * src/styles/main.css and THEME_BACKGROUND in src/preferences/preferences.ts.
+       */
+      html {
+        background: #f4f5f9;
+        color: #141722;
+      }
+      html[data-theme='dark'] {
+        background: #0e1016;
+        color: #e8eaf2;
+      }
+      @media (prefers-color-scheme: dark) {
+        html:not([data-theme]) {
+          background: #0e1016;
+          color: #e8eaf2;
+        }
+      }
+    </style>
+    <!-- boot-script -->
+    <script type="module" src="/src/main.ts"></script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <noscript>Settings Sync needs JavaScript to synchronise preferences between tabs.</noscript>
+  </body>
+</html>
